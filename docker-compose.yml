@@ -1,0 +1,12 @@
+services:
+  load-desk-notes:
+    build: .
+    container_name: load-desk-daily-notes
+    restart: unless-stopped
+    ports:
+      - "8083:8083"
+    environment:
+      PORT: 8083
+      TZ: America/Chicago
+    volumes:
+      - ./data:/app/data

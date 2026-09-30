@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#15384b">
+
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">LOXLEY OPERATIONS</p>
+
+        <p id="filename" class="filename">Loading today’s notes…</p>
+      </div>
+      <div class="header-actions">
+        <div class="clock-panel">
+          <span id="shiftBadge" class="shift-badge">—</span>
+          <strong id="clock">—</strong>
+          <small>Central Time</small>
+        </div>
+        <button id="archivesButton" class="button secondary" type="button">View Archives</button>
+        <a id="pdfButton" class="button primary" href="#">Export to PDF</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel assignments-panel" aria-labelledby="assignmentsTitle">
+        <div class="section-heading">
+          <div>
+            <p class="kicker">DAILY COVERAGE</p>
+            <h2 id="assignmentsTitle">WOL Assignments</h2>
+          </div>
+          <span id="saveStatus" class="save-status">Saved</span>
+        </div>
+        <div class="assignment-grid">
+          <label>1st Shift Load Desk WOL<input name="firstShiftLoadDeskWol" maxlength="20" autocomplete="off"></label>
+          <label>Mid-Shift WOL<input name="midShiftWol" maxlength="20" autocomplete="off"></label>
+          <label>2nd Shift Load Desk WOL<input name="secondShiftLoadDeskWol" maxlength="20" autocomplete="off"></label>
+          <label>Loading WOL<input name="loadingWol" maxlength="20" autocomplete="off"></label>
+        </div>
+      </section>
+
+      <section class="panel composer" aria-labelledby="newNoteTitle">
+        <div class="section-heading">
+          <div>
+            <p class="kicker">QUICK ENTRY</p>
+            
+          </div>
+         
+        </div>
+        <form id="noteForm">
+          <div class="form-row">
+            <label class="section-field">Section<select id="sectionInput" required></select></label>
+            <label class="name-field">Entered by <span>(optional)</span><input id="enteredByInput" maxlength="80" autocomplete="name" placeholder="Name"></label>
+          </div>
+          <label class="note-field">Note<textarea id="noteInput" required maxlength="2000" rows="4" placeholder="Enter a clear update for the load desk team…"></textarea></label>
+          <div class="composer-footer">
+            <small>Every entry receives a permanent timestamp.</small>
+            <button class="button primary" type="submit">Add Note</button>
+          </div>
+        </form>
+      </section>
+
+      <div id="sections" class="sections" aria-live="polite"></div>
+    </main>
+  </div>
+
+  <dialog id="editDialog" class="dialog">
+    <form id="editForm" method="dialog">
+      <div class="dialog-header"><div><p class="kicker">UPDATE ENTRY</p><h2>Edit Note</h2></div><button class="icon-button" value="cancel" aria-label="Close">×</button></div>
+      <label>Section<select id="editSection"></select></label>
+      <label>Entered by<input id="editEnteredBy" maxlength="80"></label>
+      <label>Note<textarea id="editText" required maxlength="2000" rows="6"></textarea></label>
+      <div class="dialog-actions"><button class="button secondary" value="cancel" type="button" data-close="editDialog">Cancel</button><button class="button primary" type="submit">Save Changes</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="archivesDialog" class="dialog archives-dialog">
+    <div class="dialog-header"><div><p class="kicker">DAILY RECORDS</p><h2>Notes Archive</h2></div><button class="icon-button" type="button" data-close="archivesDialog" aria-label="Close">×</button></div>
+    <div id="archiveList" class="archive-list"></div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
